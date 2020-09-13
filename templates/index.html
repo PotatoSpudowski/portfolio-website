@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block content %}
+{% csrf_token %}
   <div id="all">
     <div class="container-fluid">
       <div class="row row-offcanvas row-offcanvas-left">
@@ -109,6 +110,7 @@
                 </div>
                 {% endif %}
               <h2 style="font-size: medium;">Note: View counts on posts only increase if you are logged in 🤗</h2>
+              {% csrf_token %}
               <ul class="sidebar-menu">
                   <!-- Link-->
                   <li class="sidebar-item"><a href="/" class="sidebar-link active">Home</a></li>
