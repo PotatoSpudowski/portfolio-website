@@ -1,0 +1,271 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  <div id="all">
+    <div class="container-fluid">
+      <div class="row row-offcanvas row-offcanvas-left">
+      <!--   *** SIDEBAR ***-->
+      <div id="sidebar" class="col-md-4 col-lg-3 sidebar-offcanvas">
+          <div class="sidebar-content">
+              <h1 class="sidebar-heading"> <a href="/">The Art of Memeing</a></h1>
+              <p class="sidebar-p">I am a software developer that likes developing software for software companies. </p>
+              <p class="sidebar-p">Originally from Bangalore, currently also based in Bangalore. </p>
+              {% if user.is_authenticated %}
+                {% csrf_token %}
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                      <button type="submit" style="height: 30px;
+                        width: 60%;
+                        padding: 0 30px;
+                        line-height: 30px;
+                        background: #111 !important;
+                        border: 1px solid #111;
+                        color: #fff !important;
+                        position: relative;
+                        font-family: 'Open Sans',sans-serif" class="submit">Logout</button>
+                    </div>
+                  </form>
+                {% else %}
+                {% csrf_token %}
+              <div class="container">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <h2 style="font-size: large;">Hey! Consider Signing up?</h2>
+                      <p class="text-big"></p>
+                    </div>
+                    <div class="col-md-8">
+                      <div class="form-holder">
+                        <button type="submit" id="1" style="height: 30px;
+                        margin-bottom:10px;
+                        width: 100%;
+                        padding: 0 30px;
+                        line-height: 30px;
+                        background: #111 !important;
+                        border: 1px solid #111;
+                        color: #fff !important;
+                        position: relative;
+                        font-family: 'Open Sans',sans-serif" class="submit" onclick="showLogin()">Login</button>
+                        <button type="submit" id="2" style="height: 30px;
+                        margin-bottom:10px;
+                        width: 100%;
+                        padding: 0 30px;
+                        line-height: 30px;
+                        background: #111 !important;
+                        border: 1px solid #111;
+                        color: #fff !important;
+                        position: relative;
+                        font-family: 'Open Sans',sans-serif" class="submit" onclick="showSignup()">Signup</button>
+                        <script>
+                            function showLogin(){
+                                document.getElementById(1).style.display="none"
+                                document.getElementById(2).style.display="none"
+                                document.getElementById(3).style.display="block"
+                                document.getElementById(4).style.display="none"
+                            }
+                            function showSignup(){
+                                document.getElementById(1).style.display="none"
+                                document.getElementById(2).style.display="none"
+                                document.getElementById(3).style.display="none"
+                                document.getElementById(4).style.display="block"
+                            }
+                        </script>
+                        <form action="" method="POST" style="display: none" id="3">
+                          {% csrf_token %}
+                          <div class="form-group">
+                            <input class="submit-placeholder" style="border: 1px solid rgb(0, 0, 0); font-size: 1.0em; text-align:center" type="email" name="email" id="email" placeholder="Type your email address">
+                            <input class="submit-placeholder" style="border: 1px solid rgb(0, 0, 0); font-size: 1.0em; text-align:center" type="password" name="password" id="password" placeholder="Type your password">
+                            <button type="submit" style="height: 30px;
+                              width: 100%;
+                              padding: 0 30px;
+                              line-height: 30px;
+                              background: #111 !important;
+                              border: 1px solid #111;
+                              color: #fff !important;
+                              position: relative;
+                              font-family: 'Open Sans',sans-serif" class="submit">Login</button>
+                          </div>
+                        </form>
+                        <form action="{% url 'signup' %}" method="POST" style="display: none" id="4">
+                            {% csrf_token %}
+                            <input class="submit-placeholder" style="border: 1px solid rgb(0, 0, 0); font-size: 1.0em; text-align:center" type="email" name="email" id="email" placeholder="Type your email address">
+                            <input class="submit-placeholder" style="border: 1px solid rgb(0, 0, 0); font-size: 1.0em; text-align:center" type="password" name="password" id="password" placeholder="Type your password">
+                            <div class="form-group">
+                              <button type="submit" style="height: 30px;
+                                width: 100%;
+                                padding: 0 30px;
+                                line-height: 30px;
+                                background: #111 !important;
+                                border: 1px solid #111;
+                                color: #fff !important;
+                                position: relative;
+                                font-family: 'Open Sans',sans-serif" class="submit">Signup</button>
+                            </div>
+                          </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {% endif %}
+              <h2 style="font-size: medium;">Note: View counts on posts only increase if you are logged in 🤗</h2>
+              <ul class="sidebar-menu">
+                  <!-- Link-->
+                  <li class="sidebar-item"><a href="/" class="sidebar-link active">Home</a></li>
+                  <!-- Link-->
+                  <li class="sidebar-item"><a href="/about" class="sidebar-link">About</a></li>
+                  <!-- Link-->
+                  <!-- <li class="sidebar-item"><a href="/contact" class="sidebar-link">Get in touch</a></li> -->
+              </ul>
+              
+              <p class="social"><a href="https://github.com/PotatoSpudowski" data-animate-hover="pulse" class="external github"><i class="fa fa-github"></i></a><a href="https://www.linkedin.com/in/c-s-bahushruth-4b8449150/" data-animate-hover="pulse" class="external linkedin"><i class="fa fa-linkedin"></i></a><a href="https://twitter.com/Bahushruth" data-animate-hover="pulse" class="external twitter"><i class="fa fa-twitter"></i></a><a href="https://www.instagram.com/csbahushruth/" title="" class="external instagram"><i class="fa fa-instagram"></i></a><a href="mailto:bahushruth@bahushruth.com?subject=Hi we need to hire you ASAP!" data-animate-hover="pulse" class="email"><i class="fa fa-envelope"></i></a></p>
+              <div class="copyright text-center text-md-left">
+              <p class="credit">&copy;1453 Bahushruth Christ | Template by Ottoman Empire</p>
+              <!-- Please do not remove the backlink to us, unless you support the development at http://bootstrapious.com/donate. It is part of the license conditions. Thanks for understanding :)        -->
+          </div>
+      </div>
+      </div>
+      <!--   *** SIDEBAR END ***  --> 
+
+        <!--   *** PORTFOLIO ***-->
+        <div class="col-md-8 col-lg-9 content-column">
+          <div class="small-navbar d-flex d-md-none">
+            <button type="button" data-toggle="offcanvas" class="btn btn-outline-primary"> <i class="fa fa-align-left mr-2"></i>Menu</button>
+            <h1 class="small-navbar-heading"> <a href="">The Art of Memeing</a></h1>
+          </div>
+          <div class="grid row">
+            {% for obj in object_list %}
+
+            {% if forloop.counter|divisibleby:2 %}
+            <div class="col-md-6 col-lg-3 grid-item"> 
+              <div class="box-masonry"> <a href="{% url 'post-detail' obj.id %}" title="" class="box-masonry-image with-hover-overlay"><img src="{{obj.img1.url}}" alt="" class="img-fluid"></a>
+                <div class="box-masonry-hover-text-header"> <a href="{% url 'post-detail' obj.id %}" class="tile-link">  </a>
+                  <h4>{{obj.title}}</h4>
+                  <div class="box-masonry-desription">
+                    <p>{{obj.overview}}</p>
+                  </div>
+                </div>
+              </div>
+              <p style="font-size: small;margin-top:-10px; color:rgb(88, 86, 86)">
+                <img src="https://www.iconfinder.com/data/icons/small-n-flat/24/calendar-512.png" height="30" style="padding-right: 5px;">{{obj.timestamp.date}}
+                <img src="https://www.flaticon.com/svg/static/icons/svg/3208/3208779.svg" height="30" style="padding-right: 5px;padding-left: 5px">{{obj.viewCount}} views
+              </p>
+            </div>
+            {% else %}
+            <div class="col-md-6 col-lg-3 grid-item">
+              <div class="box-masonry"> <a href="{% url 'post-detail' obj.id %}" title="" class="box-masonry-image with-hover-overlay with-hover-icon"><img src="{{obj.img1.url}}" alt="" class="img-fluid"></a>
+                <div class="box-masonry-text"> 
+                  <h4> <a href="{% url 'post-detail' obj.id %}">{{obj.title}}</a></h4>
+                  <div class="box-masonry-desription">
+                    <p>{{obj.overview}}</p>
+                  </div>
+                </div>
+              </div>
+              <p style="font-size: small;margin-top:-10px; color:rgb(88, 86, 86)">
+                  <img src="https://www.iconfinder.com/data/icons/small-n-flat/24/calendar-512.png" height="30" style="padding-right: 5px;">{{obj.timestamp.date}}
+                  <img src="https://www.flaticon.com/svg/static/icons/svg/3208/3208779.svg" height="30" style="padding-right: 5px;padding-left: 5px">{{obj.viewCount}} views
+              </p>
+            </div>
+          {% endif %}
+
+
+            <!-- <div class="col-md-6 col-lg-3 grid-item"> 
+              <div class="box-masonry"> <a href="/post" title="" class="box-masonry-image with-hover-overlay with-hover-icon"><img src="{% static 'img/portfolio/gravity-paper.jpg' %}" alt="" class="img-fluid"></a>
+                <div class="box-masonry-text"> 
+                  <h4> <a href="/post">Name of the work 3</a></h4>
+                  <div class="box-masonry-desription">
+                    <p>Fifth abundantly made Give sixth hath. Cattle creature i be don't them.</p>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+
+            <!-- <div class="col-md-6 col-lg-3 grid-item"> 
+              <div class="box-masonry"> 
+                <div class="box-masonry-text"> 
+                  <h4> <a href="/post">Item without image</a></h4>
+                  <div class="box-masonry-desription">
+                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.  A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 grid-item"> 
+              <div class="box-masonry"> <a href="/post" title="" class="box-masonry-image with-hover-overlay"><img src="{% static 'img/portfolio/business-card.jpg' %}" alt="" class="img-fluid"></a>
+                <div class="box-masonry-hover-text-header"> <a href="/post" class="tile-link">  </a>
+                  <h4>Name of the work 5</h4>
+                  <div class="box-masonry-desription">
+                    <p>Fifth abundantly made Give sixth hath. Cattle creature i be don't them.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 grid-item"> 
+              <div class="box-masonry"> 
+                <div class="box-masonry-text"> 
+                  <h4> <a href="/post">Name of the work 6</a></h4>
+                  <div class="box-masonry-desription">
+                    <p>Fifth abundantly made Give sixth hath. Cattle creature i be don't them.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 grid-item"> 
+              <div class="box-masonry"> <a href="/post" title="" class="box-masonry-image with-hover-overlay with-hover-icon"><img src="{% static 'img/portfolio/label-clothes.jpg' %}" alt="" class="img-fluid"></a>
+                <div class="box-masonry-text"> 
+                  <h4> <a href="/post">Name of the work 7</a></h4>
+                  <div class="box-masonry-desription">
+                    <p>Fifth abundantly made Give sixth hath. Cattle creature i be don't them.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 grid-item"> 
+              <div class="box-masonry"> <a href="/post" title="" class="box-masonry-image with-hover-overlay with-hover-icon"><img src="{% static 'img/portfolio/ipad-air-2.jpg' %}" alt="" class="img-fluid"></a>
+                <div class="box-masonry-text"> 
+                  <h4> <a href="/post">Name of the work 8</a></h4>
+                  <div class="box-masonry-desription">
+                    <p>Fifth abundantly made Give sixth hath. Cattle creature i be don't them.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 grid-item"> 
+              <div class="box-masonry"> <a href="/post" title="" class="box-masonry-image with-hover-overlay with-hover-icon"><img src="{% static 'img/portfolio/envelope-brand.jpg' %}" alt="" class="img-fluid"></a>
+                <div class="box-masonry-text"> 
+                  <h4> <a href="/post">Item with image</a></h4>
+                  <div class="box-masonry-desription">
+                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.  A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 grid-item"> 
+              <div class="box-masonry"> <a href="/post" title="" class="box-masonry-image with-hover-overlay"><img src="{% static 'img/portfolio/trifold.jpg' %}" alt="" class="img-fluid"></a>
+                <div class="box-masonry-hover-text-header"> <a href="/post" class="tile-link">  </a>
+                  <h4>Item with image</h4>
+                  <div class="box-masonry-desription">
+                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.  A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 grid-item"> 
+              <div class="box-masonry"> <a href="/post" title="" class="box-masonry-image with-hover-overlay"><img src="{% static 'img/portfolio/paper-presentation.jpg' %}" alt="" class="img-fluid"></a>
+                <div class="box-masonry-hover-text-header"> <a href="/post" class="tile-link">  </a>
+                  <h4>Item with image</h4>
+                  <div class="box-masonry-desription">
+                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.  A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+            {% endfor %}
+          </div>
+        </div>
+        <!--   *** PORTFOLIO END ***-->
+      </div>
+    </div>
+  </div>
+
+{% endblock content %}
