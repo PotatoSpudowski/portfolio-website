@@ -22,7 +22,7 @@ def index(request):
                     user = User.objects.get(username=email)
                     auth.login(request,user)
             except:
-                continue
+                _ = 0
 
 
         # new_signup = Signup()
