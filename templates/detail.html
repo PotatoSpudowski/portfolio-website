@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
+
 {% block content %}
   <div id="all">
     <div class="container-fluid">
@@ -73,4 +74,13 @@
       </div>
     </div>
   </div>
+
+<script>
+    window.onbeforeunload=function (){
+      console.log(123)
+    }
+</script>
+
 {% endblock content %}
+
+
