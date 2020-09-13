@@ -15,8 +15,8 @@ def index(request):
             auth.logout(request)
         else:
             try:
-                email = request.POST["email"]
-                password = request.POST["password"]
+                email = request.POST["loginemail"]
+                password = request.POST["loginpassword"]
                 user=auth.authenticate(username=email,password=password)
                 if user is not None: 
                     user = User.objects.get(username=email)
