@@ -13,13 +13,14 @@ def index(request):
     if request.method == "POST":
         if request.user.is_authenticated:
             auth.logout(request)
-        else:    
-            email = request.POST["email"]
-            password = request.POST["password"]
-            user=auth.authenticate(username=email,password=password)
-            if user is not None: 
-                user = User.objects.get(username=email)
-                auth.login(request,user)
+        else:
+            if request.POST["email"] is not None and request.POST["password"] is not None:
+                email = request.POST["email"]
+                password = request.POST["password"]
+                user=auth.authenticate(username=email,password=password)
+                if user is not None: 
+                    user = User.objects.get(username=email)
+                    auth.login(request,user)
 
 
         # new_signup = Signup()
